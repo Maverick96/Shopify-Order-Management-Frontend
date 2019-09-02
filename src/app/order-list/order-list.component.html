@@ -1,0 +1,48 @@
+<div class="order-list">
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" *ngFor="let column of columnList" (click)="changeSort(column)">
+          {{column.text}}
+
+          <span *ngIf="column.id === sortBy['id']">
+            <img *ngIf="sortBy['sortAsc']" src="../../assets/images/sort-down.svg" width="15" height="15" />
+            <img *ngIf="!sortBy['sortAsc']" src="../../assets/images/sort-up.svg" width="15" height="15" />
+          </span>
+
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let order of orderListData;" (click)="openDetails(order)">
+        <td *ngFor="let column of columnList">
+          <div>
+            {{order[column['id']]}}
+          </div>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button class="btn btn-primary" [disabled]="currentPage === 1" (click)="prevPage()">
+      Previous
+    </button>
+
+    <div class="mx-4">
+      {{currentPage}}
+    </div>
+
+    <button class="btn btn-primary" [disabled]="this.currentPage * this.limit >= this.totalItems" (click)="nextPage()">
+      Next
+    </button>
+
+    <select class="ml-4" (change)="changePagination($event)" [(ngModel)]="limit">
+      <option *ngFor="let page of paginationList" [selected]="page === limit" [value]="page">{{page}}</option>
+
+    </select>
+  </div>
+</div>

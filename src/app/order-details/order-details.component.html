@@ -1,0 +1,57 @@
+<div class="details">
+  <form *ngIf="isFormCreated" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+
+    <div class="row mb-3">
+      <button class="btn btn-primary" (click)="back()">Back</button>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-5">
+
+        <div class="form-group">
+          <label class="bold" for="exampleInputEmail1">Email:</label>
+          <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp"
+            placeholder="Enter email" (keyup)="checkFormStatus($event)">
+          <small *ngIf="orderForm.controls['email'].invalid && orderForm.controls['email'].touched"
+            class="form-text text-muted">Email is invalid</small>
+        </div>
+
+
+      </div>
+
+      <div class="col-4">
+        <div class="form-group">
+          <label class="bold" for="exampleInputEmail1">Mobile:</label>
+          <input type="text" formControlName="mobile" class="form-control" id="mobile" aria-describedby="mobile"
+            placeholder="Enter mobile" (keyup)="checkFormStatus($event)">
+          <small *ngIf="orderForm.controls['mobile'].invalid && orderForm.controls['mobile'].touched"
+            class="form-text text-muted">Mobile is invalid</small>
+        </div>
+
+      </div>
+
+      <div class="col-3">
+        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"
+          [disabled]="orderForm.invalid || !hasFormChanged">Update</button>
+      </div>
+    </div>
+
+    <div class="order-details">
+      <div class="heading bold">
+        Order Items :
+      </div>
+      <br>
+      <div class="card row mt-3" *ngFor="let item of orderItems">
+        <div class="order-item" *ngFor="let column of itemDetailsColumns">
+          <div class="mr-3 bold">{{column['text']}}:</div>
+          <div class="ml-4">
+            {{item[column['id']]}}
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </form>
+
+</div>

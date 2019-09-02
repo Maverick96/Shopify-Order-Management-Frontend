@@ -1,0 +1,24 @@
+.container{
+    margin-top: 5vh;
+}
+
+label{
+    float: left;
+}
+
+.order-item{
+    display: flex;
+    padding: 1.25rem;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.heading{
+    float: left;
+}
+
+.details{
+    padding: 2rem;
+}
